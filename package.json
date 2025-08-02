@@ -1,11 +1,24 @@
 {
   "name": "create-mycorp-app",
-  "version": "1.0.0",
-  "description": "社内用アプリのテンプレートCLI",
+  "version": "1.0.1",
+  "description": "MyCorpのReactテンプレートCLI",
   "bin": {
     "create-mycorp-app": "./bin/create-mycorp-app.js"
   },
   "type": "module",
+  "files": [
+    "bin",
+    "plopfile.js",
+    "templates"
+  ],
+  "keywords": [
+    "create",
+    "cli",
+    "react",
+    "template"
+  ],
+  "author": "aion0721",
+  "license": "MIT",
   "dependencies": {
     "inquirer": "^12.9.0",
     "node-plop": "^0.32.0"
