@@ -1,8 +1,7 @@
-// test/create-mycorp-app.test.ts
 import { resolve } from "path";
 import { existsSync, rmSync, readFileSync } from "fs";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { execa } from "execa";
+import { execaNode } from "execa";
 
 const CLI_PATH = resolve("bin", "create-mycorp-app.js");
 const TEST_OUTPUT_DIR = resolve("test-output");
@@ -21,10 +20,9 @@ describe("create-mycorp-app CLI", () => {
   });
 
   it("should generate project with react-ts template", async () => {
-    // ⬇ ここだけ shell:true を付ける
-    const { stdout } = await execa("node", [CLI_PATH, TEST_PROJECT_NAME], {
+    // execaNode は “実行中の Node バイナリ” を確実に呼び出してくれる
+    const { stdout } = await execaNode(CLI_PATH, [TEST_PROJECT_NAME], {
       cwd: TEST_OUTPUT_DIR,
-      shell: true,
     });
 
     expect(stdout).toContain("✅ プロジェクトが作成されました🎉");
