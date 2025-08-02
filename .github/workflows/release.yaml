@@ -47,8 +47,8 @@ jobs:
         if: always()
         with:
           name: Vitest Report
-          path: test-results.xml
-          reporter: vitest
+          path: test-results.xml # ← JUnit XML
+          reporter: jest-junit # ★ ココを変更
 
   release:
     if: github.ref == 'refs/heads/main' # ← mainブランチ限定で実行！
