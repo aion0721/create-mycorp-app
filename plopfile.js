@@ -5,7 +5,7 @@ export default function (plop) {
     actions: [
       {
         type: "addMany",
-        destination: "{{projectName}}/",
+        destination: ".",
         templateFiles: "templates/**",
         base: "templates",
       },
