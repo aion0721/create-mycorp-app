@@ -1,8 +1,9 @@
-// test/create-mycorp-app.test.ts
+import { fileURLToPath } from "url";
+import { resolve } from "path";
+import { existsSync, rmSync, readFileSync } from "fs";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { execa } from "execa";
-import { existsSync, rmSync, readFileSync } from "fs";
-import { resolve } from "path";
+import { which } from "which"; // ←追加
 
 const CLI_PATH = resolve("bin", "create-mycorp-app.js");
 const TEST_OUTPUT_DIR = resolve("test-output");
@@ -10,30 +11,28 @@ const TEST_PROJECT_NAME = "my-test-app";
 const PROJECT_PATH = resolve(TEST_OUTPUT_DIR, TEST_PROJECT_NAME);
 
 describe("create-mycorp-app CLI", () => {
-  beforeEach(() => {
-    // 過去のテスト結果を掃除✨
+  let nodePath: string;
+
+  beforeEach(async () => {
+    nodePath = await which("node"); // ← node の絶対パスを取得
     if (existsSync(PROJECT_PATH)) {
       rmSync(PROJECT_PATH, { recursive: true, force: true });
     }
   });
 
   afterEach(() => {
-    // 後片付けもちゃんとね🧼
     if (existsSync(PROJECT_PATH)) {
       rmSync(PROJECT_PATH, { recursive: true, force: true });
     }
   });
 
   it("should generate project with react-ts template", async () => {
-    // CLI実行してテンプレート作らせる💪
-    const { stdout } = await execa("node", [CLI_PATH, TEST_PROJECT_NAME], {
+    const { stdout } = await execa(nodePath, [CLI_PATH, TEST_PROJECT_NAME], {
       cwd: TEST_OUTPUT_DIR,
     });
 
-    // 成功ログ出てるかな？🧐
     expect(stdout).toContain("✅ プロジェクトが作成されました🎉");
 
-    // ファイルがちゃんとできてるかも確認しとこ💕
     const created = existsSync(resolve(PROJECT_PATH, "package.json"));
     expect(created).toBe(true);
 
