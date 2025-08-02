@@ -1,0 +1,12 @@
+{
+  "name": "create-mycorp-app",
+  "version": "1.0.0",
+  "description": "社内用アプリのテンプレートCLI",
+  "bin": {
+    "create-mycorp-app": "./bin/create-mycorp-app.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "node-plop": "^0.32.0"
+  }
+}
