@@ -1,5 +1,5 @@
 /** @type {import('semantic-release').Options} */
-export default {
+module.exports = {
   branches: ["main"],
   plugins: [
     "@semantic-release/commit-analyzer",
