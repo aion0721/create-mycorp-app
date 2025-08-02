@@ -1,5 +1,8 @@
 # create-mycorp-app
 
+![CI](https://github.com/aion0721/create-mycorp-app/actions/workflows/release.yaml/badge.svg)
+![npm](https://img.shields.io/npm/v/create-mycorp-app.svg)
+
 🛠️ MyCorp の React アプリ開発を簡単に始めるための CLI ツールです。  
 テンプレートベースで構成されており、プロジェクトの初期セットアップを秒速で完了できます！
 
