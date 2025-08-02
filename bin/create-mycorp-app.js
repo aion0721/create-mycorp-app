@@ -22,11 +22,15 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
     projectName = answer.projectName;
   }
 
-  const plop = await nodePlop(resolve(__dirname, "../plopfile.js"));
+  // ★ プロジェクトの絶対パスを作る！
+  const targetDir = resolve(process.cwd(), projectName);
+
+  const plop = await nodePlop(resolve(__dirname, "../plopfile.js"), {
+    destBasePath: targetDir, // ← これがポイント！
+  });
   const generator = plop.getGenerator("default");
 
   const result = await generator.runActions({ projectName });
 
-  // 👀 ログで確認したいとき
-  // console.log(result);
+  console.log("✅ プロジェクトが作成されました🎉:", targetDir);
 })();
