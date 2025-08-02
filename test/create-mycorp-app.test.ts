@@ -1,9 +1,7 @@
-import { fileURLToPath } from "url";
 import { resolve } from "path";
 import { existsSync, rmSync, readFileSync } from "fs";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { execa } from "execa";
-import which from "which"; // ←💖 これでOK！
 
 const CLI_PATH = resolve("bin", "create-mycorp-app.js");
 const TEST_OUTPUT_DIR = resolve("test-output");
@@ -14,7 +12,7 @@ describe("create-mycorp-app CLI", () => {
   let nodePath: string;
 
   beforeEach(async () => {
-    nodePath = await which("node"); // ← node の絶対パスを取得
+    const nodePath = process.execPath;
     if (existsSync(PROJECT_PATH)) {
       rmSync(PROJECT_PATH, { recursive: true, force: true });
     }

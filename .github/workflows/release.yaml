@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+      - dev # ← devブランチにも反応させる
+  pull_request:
+    branches:
+      - main
+      - dev
 
 permissions:
   contents: write
@@ -32,7 +37,7 @@ jobs:
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
-        if: always() # ← 失敗してても実行する！
+        if: always()
         with:
           name: vitest-report
           path: test-results.xml
@@ -46,9 +51,9 @@ jobs:
           reporter: vitest
 
   release:
+    if: github.ref == 'refs/heads/main' # ← mainブランチ限定で実行！
+    needs: test
     runs-on: ubuntu-latest
-    needs: test # ← 🔥 テスト成功後のみ実行！
-    if: success()
 
     steps:
       - name: Checkout repo
