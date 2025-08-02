@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/aion0721/create-mycorp-app/compare/v1.0.3...v1.0.4) (2025-08-02)
+
+
+### Bug Fixes
+
+* add badge ([d5fd510](https://github.com/aion0721/create-mycorp-app/commit/d5fd510585f554fd34bdeae885c723e31ffb01e0))
+
 # 1.0.0 (2025-08-02)
 
 
