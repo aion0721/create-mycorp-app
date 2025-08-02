@@ -2,6 +2,7 @@ import { resolve } from "path";
 import { existsSync, rmSync, readFileSync } from "fs";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { execaNode } from "execa";
+import { mkdirSync } from "fs"; // ← 追加
 
 const CLI_PATH = resolve("bin", "create-mycorp-app.js");
 const TEST_OUTPUT_DIR = resolve("test-output");
@@ -10,8 +11,12 @@ const PROJECT_PATH = resolve(TEST_OUTPUT_DIR, TEST_PROJECT_NAME);
 
 describe("create-mycorp-app CLI", () => {
   beforeEach(() => {
-    if (existsSync(PROJECT_PATH))
+    // ★ test-output ディレクトリを必ず作成
+    mkdirSync(TEST_OUTPUT_DIR, { recursive: true });
+
+    if (existsSync(PROJECT_PATH)) {
       rmSync(PROJECT_PATH, { recursive: true, force: true });
+    }
   });
 
   afterEach(() => {
