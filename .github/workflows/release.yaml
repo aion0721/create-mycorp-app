@@ -6,8 +6,9 @@ on:
       - main
 
 permissions:
-  contents: read
-  id-token: write # 👈 OIDCに必要！
+  contents: write # ✅ git tagをpushできるように
+  id-token: write # ✅ OIDCでnpm publishできるように
+  issues: write # 📝 任意（semantic-releaseが自動でIssue立てられるように）
 
 jobs:
   release:
