@@ -8,7 +8,6 @@ const CLI_PATH = resolve("bin", "create-mycorp-app.js");
 const TEST_OUTPUT_DIR = resolve("test-output");
 const TEST_PROJECT_NAME = "my-test-app";
 const PROJECT_PATH = resolve(TEST_OUTPUT_DIR, TEST_PROJECT_NAME);
-const nodePath = process.execPath; // ←✨ここで安全に確保！
 
 describe("create-mycorp-app CLI", () => {
   beforeEach(() => {
@@ -24,7 +23,8 @@ describe("create-mycorp-app CLI", () => {
   });
 
   it("should generate project with react-ts template", async () => {
-    const { stdout } = await execa(nodePath, [CLI_PATH, TEST_PROJECT_NAME], {
+    // ✅ ココを "node" に固定
+    const { stdout } = await execa("node", [CLI_PATH, TEST_PROJECT_NAME], {
       cwd: TEST_OUTPUT_DIR,
     });
 
