@@ -1,7 +1,6 @@
 export default function (plop) {
   plop.setGenerator("default", {
-    description: "Vite + React + TS な社内テンプレ作成✨",
-    // ← プロンプトは省略！引数で受けるから
+    description: "社内アプリのViteテンプレを作るよ💫",
     prompts: [],
     actions: [
       {
