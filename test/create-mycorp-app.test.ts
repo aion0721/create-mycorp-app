@@ -3,7 +3,7 @@ import { resolve } from "path";
 import { existsSync, rmSync, readFileSync } from "fs";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { execa } from "execa";
-import { which } from "which"; // ←追加
+import which from "which"; // ←💖 これでOK！
 
 const CLI_PATH = resolve("bin", "create-mycorp-app.js");
 const TEST_OUTPUT_DIR = resolve("test-output");
