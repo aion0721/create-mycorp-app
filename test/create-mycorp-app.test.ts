@@ -1,3 +1,4 @@
+import { fileURLToPath } from "url";
 import { resolve } from "path";
 import { existsSync, rmSync, readFileSync } from "fs";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
@@ -7,12 +8,10 @@ const CLI_PATH = resolve("bin", "create-mycorp-app.js");
 const TEST_OUTPUT_DIR = resolve("test-output");
 const TEST_PROJECT_NAME = "my-test-app";
 const PROJECT_PATH = resolve(TEST_OUTPUT_DIR, TEST_PROJECT_NAME);
+const nodePath = process.execPath; // ←✨ここで安全に確保！
 
 describe("create-mycorp-app CLI", () => {
-  let nodePath: string;
-
-  beforeEach(async () => {
-    const nodePath = process.execPath;
+  beforeEach(() => {
     if (existsSync(PROJECT_PATH)) {
       rmSync(PROJECT_PATH, { recursive: true, force: true });
     }
