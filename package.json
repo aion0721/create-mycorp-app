@@ -1,6 +1,6 @@
 {
   "name": "create-mycorp-app",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "MyCorpのReactテンプレートCLI",
   "bin": {
     "create-mycorp-app": "./bin/create-mycorp-app.js"
